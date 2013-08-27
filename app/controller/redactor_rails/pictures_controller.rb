@@ -2,8 +2,7 @@ class RedactorRails::PicturesController < ApplicationController
   # before_filter :redactor_authenticate_user! if RedactorRails.picture_model.new.respond_to?(RedactorRails.devise_user)
 
   def index
-    @pictures = RedactorRails.picture_model.where(
-        { :assetable => redactor_asset_owner } )
+    @pictures = RedactorRails.picture_model.find_by_assetable(redactor_asset_owner)
     render :json => @pictures.to_json
   end
 
