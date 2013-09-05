@@ -18,7 +18,7 @@ module RedactorRails
               # belongs_to RedactorRails.devise_user, :foreign_key => RedactorRails.devise_user_key
 
               def self.find_by_assetable(owner)
-                where(assetable_id: owner.id, assetable_type: owner.base_class.to_s)
+                where(assetable_id: owner.id, assetable_type: owner.class.to_s)
               end
 
               if defined?(ActiveModel::ForbiddenAttributesProtection) && base.ancestors.include?(ActiveModel::ForbiddenAttributesProtection)
