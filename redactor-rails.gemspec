@@ -20,6 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rspec", "~> 3.0"
   gem.add_development_dependency "rspec-rails", "~> 3.0"
   gem.add_development_dependency "factory_bot_rails"
+  gem.add_development_dependency "test-unit"
   gem.add_development_dependency "shoulda-matchers"
 
 
