@@ -3,10 +3,11 @@ require 'rails_helper'
 describe RedactorRails::PicturesController  do
   let(:photo_file) { Rack::Test::UploadedFile.new("spec/fixtures/project_photo.jpg", "image/jpeg") }
   let(:assetable) { FactoryBot.create(:admin) }
+  let(:params) { { file: photo_file } }
 
   describe "POST create" do
     before { controller.stub(:asset_owner).and_return(assetable) }
-    subject { post :create, file: photo_file }
+    subject { post :create, params }
 
     context "when asset_owner present" do
 
