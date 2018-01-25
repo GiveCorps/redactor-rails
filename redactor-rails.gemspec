@@ -15,6 +15,15 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = RedactorRails::VERSION
 
+  gem.add_development_dependency "bundler", "~> 1.13"
+  gem.add_development_dependency "rake", "~> 10.0"
+  gem.add_development_dependency "rspec", "~> 3.0"
+  gem.add_development_dependency "rspec-rails", "~> 3.0"
+  gem.add_development_dependency "factory_bot_rails"
+  gem.add_development_dependency "test-unit"
+  gem.add_development_dependency "shoulda-matchers"
+
+
   gem.add_dependency("mime-types")
   gem.add_dependency("orm_adapter")
   gem.add_dependency("devise")
