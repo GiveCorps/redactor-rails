@@ -1,8 +1,9 @@
 class RedactorRails::PicturesController < ApplicationController
-  # before_filter :redactor_authenticate_user! if RedactorRails.picture_model.new.respond_to?(RedactorRails.devise_user)
+  before_filter :ensure_redactor_asset_owner_present, only: [:create]
 
   def index
-    @pictures = RedactorRails.picture_model.find_by_assetable(redactor_asset_owner)
+    owner = redactor_asset_owner ||  OpenStruct.new(id: 0)
+    @pictures = RedactorRails.picture_model.find_by_assetable(owner)
     render :json => @pictures.to_json
   end
 
@@ -19,5 +20,11 @@ class RedactorRails::PicturesController < ApplicationController
     else
       render :nothing => true
     end
+  end
+
+  private
+
+  def ensure_redactor_asset_owner_present
+    render :nothing => true, :status => :unauthorized if redactor_asset_owner.nil?
   end
 end
