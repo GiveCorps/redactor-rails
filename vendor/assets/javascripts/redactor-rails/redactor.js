@@ -2869,7 +2869,8 @@
 					$dropdown.on('mouseover', function() {
 
 						$body.addClass('body-hidden');
-						$body.css('margin-right', ($body.width() - width) + 'px');
+						// causing glitchy behavior PSTWO-11293
+						//$body.css('margin-right', ($body.width() - width) + 'px');
 
 					 });
 
