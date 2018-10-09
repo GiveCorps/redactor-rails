@@ -2809,7 +2809,7 @@
 
 					// Always re-append it to the end of <body> so it always has the highest sub-z-index.
 					var $dropdown = $button.data('dropdown').appendTo(document.body);
-
+					$dropdown.addClass(this.$toolbar.attr('id'));
 					// ios keyboard hide
 					document.activeElement.blur();
 
@@ -2869,7 +2869,8 @@
 					$dropdown.on('mouseover', function() {
 
 						$body.addClass('body-hidden');
-						$body.css('margin-right', ($body.width() - width) + 'px');
+						// causing glitchy behavior PSTWO-11293
+						//$body.css('margin-right', ($body.width() - width) + 'px');
 
 					 });
 
@@ -2893,6 +2894,7 @@
 				hide: function (e)
 				{
 					var $dropdown = $(e.target);
+					$dropdown.removeClass(this.$toolbar.attr('id'))
 					if (!$dropdown.hasClass('dropact'))
 					{
 						$dropdown.removeClass('dropact');
@@ -7345,7 +7347,11 @@
 						position = 'absolute';
 					}
 
-					$('.redactor-dropdown').each(function()
+					var domSelector = '.redactor-dropdown';
+					var toolbarId = this.$toolbar.attr('id');
+					if (toolbarId)
+						domSelector = domSelector + '.'+ toolbarId;
+					$(domSelector).each(function()
 					{
 						$(this).css({ position: position, top: top + 'px' });
 					});
@@ -7353,7 +7359,11 @@
 				unsetDropdownsFixed: function()
 				{
 					var top = (this.$toolbar.innerHeight() + this.$toolbar.offset().top);
-					$('.redactor-dropdown').each(function()
+					var domSelector = '.redactor-dropdown';
+					var toolbarId = this.$toolbar.attr('id');
+					if (toolbarId)
+						domSelector = domSelector + '.'+ toolbarId;
+					$(domSelector).each(function()
 					{
 						$(this).css({ position: 'absolute', top: top + 'px' });
 					});

@@ -1,2 +1,2 @@
-//= require redactor-rails/redactor.min
+//= require redactor-rails/redactor
 //= require redactor-rails/config
