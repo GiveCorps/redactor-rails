@@ -1,5 +1,5 @@
 class RedactorRails::PicturesController < ApplicationController
-  before_filter :ensure_redactor_asset_owner_present, only: [:create]
+  before_action :ensure_redactor_asset_owner_present, only: [:create]
 
   def index
     owner = redactor_asset_owner ||  OpenStruct.new(id: 0)
