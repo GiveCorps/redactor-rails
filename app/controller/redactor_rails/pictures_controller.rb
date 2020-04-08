@@ -16,7 +16,7 @@ class RedactorRails::PicturesController < ApplicationController
     @picture.assetable = redactor_asset_owner
 
     if @picture.save
-      render :text => { :filelink => @picture.url }.to_json
+      render :plain => { :filelink => @picture.url }.to_json
     else
       render :nothing => true
     end
